@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Resume</title>
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            scroll-behavior: smooth;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 25px;
+            background-color: #222;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .name {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .name:hover {
+            color: rgb(57, 255, 20);
+        }
+        .bold{
+            color: rgb(57, 255, 20);
+        }
+        
+
+        .menu {
+            display: flex;
+            align-items: center;
+        }
+
+        .menu a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+        
+
+        .menu a:hover {
+            color: rgb(57, 255, 20);
+            text-decoration: underline;
+        }
+
+        .button {
+            padding: 10px 20px;
+            background-color: rgb(57, 255, 20);
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 1rem;
+            text-transform: uppercase;
+            cursor: pointer;
+            margin-left: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #3cc51f;
+        }
+
+        /* Container Layout using Flexbox */
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px 10%;
+            min-height: 80vh;
+        }
+
+        /* Text Content Styling */
+        .post {
+            max-width: 50%;
+        }
+
+        .post h1 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .post p {
+            font-size: 1.3rem;
+            color: #aaa;
+        }
+
+        /* Profile Picture Styling */
+        .profile-pic img {
+            border: 4px solid white;
+            width: 330px;
+            height: 330px;
+            border-radius: 50%;
+            object-fit: cover;
+            transition: border-color 0.3s;
+        }
+
+        .profile-pic:hover {
+            border-color: rgb(57, 255, 20);
+        }
+
+        /* Counters Section */
+        .counters {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px 10%;
+            background-color: #111;
+            text-align: center;
+        }
+
+        .counter {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: rgb(57, 255, 20);
+        }
+
+        .counter-label {
+            font-size: 1.2rem;
+            color: #aaa;
+        }
+
+        /* Skills Section */
+        .skills {
+            padding: 40px 10%;
+            background-color: #000;
+        }
+
+        .skills-header {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .skills-cards {
+            display: flex;
+            justify-content: space-around;
+            gap: 20px;
+        }
+
+        .skill-card {
+            background-color: #222;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            width: 30%;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .skill-card:hover {
+            background-color: rgb(57, 255, 20);
+            transform: scale(1.05);
+            color: #000;
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .skill-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .skill-description {
+            font-size: 1rem;
+            color: #aaa;
+        }
+
+        /* Qualifications Section */
+        .qualifications {
+            padding: 40px 10%;
+            background-color: #111;
+            color: #fff;
+        }
+
+        .qualifications-header {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .qualification-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0 auto;
+            max-width: 600px;
+        }
+
+        .qualification-list li {
+            background-color: #222;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 5px solid rgb(57, 255, 20);
+            font-size: 1.2rem;
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: #222;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .social-icons {
+            margin-top: 10px;
+        }
+
+        .social-icons a {
+            color: #fff;
+            margin: 0 10px;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: rgb(57, 255, 20);
+        }
+        :root {
+            --background-color: #000;
+            --text-color: #fff;
+            --primary-color: rgb(57, 255, 20);
+            --secondary-background: #111;
+            --card-background: #222;
+            --text-muted: #aaa;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            scroll-behavior: smooth;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 25px;
+            background-color: var(--card-background);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .name {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--text-color);
+        }
+
+        .name:hover {
+            color: var(--primary-color);
+        }
+
+        .menu {
+            display: flex;
+            align-items: center;
+        }
+
+        .menu a {
+            color: var(--text-color);
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        .menu a:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+
+        .button {
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            border: none;
+            border-radius: 5px;
+            color: var(--background-color);
+            font-size: 1rem;
+            text-transform: uppercase;
+            cursor: pointer;
+            margin-left: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #3cc51f;
+        }
+
+        .theme-toggle {
+            cursor: pointer;
+            margin-left: 15px;
+            font-size: 1.2rem;
+            background: none;
+            border: none;
+            color: var(--text-color);
+        }
+
+        /* Container Layout */
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px 10%;
+            min-height: 80vh;
+        }
+
+        .post h1 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .post p {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+        }
+
+        .profile-pic img {
+            border: 4px solid var(--text-color);
+            width: 330px;
+            height: 330px;
+            border-radius: 50%;
+            object-fit: cover;
+            transition: border-color 0.3s;
+        }
+       
+
+        .profile-pic:hover img {
+            border-color: var(--primary-color);
+           
+        }
+
+        /* Counters Section */
+        .counters {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px 10%;
+            background-color: var(--secondary-background);
+            text-align: center;
+        }
+
+        .counter {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .counter-label {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+        }
+
+        /* Skills Section */
+        .skills {
+            padding: 40px 10%;
+            background-color: var(--background-color);
+        }
+
+        .skills-header {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .skills-cards {
+            display: flex;
+            justify-content: space-around;
+            gap: 20px;
+        }
+
+        .skill-card {
+            background-color: var(--card-background);
+            border: 1px solid var(--secondary-background);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            width: 30%;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .skill-card:hover {
+            background-color: var(--primary-color);
+            transform: scale(1.05);
+            color: var(--background-color);
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: var(--card-background);
+            color: var(--text-color);
+            text-align: center;
+            padding: 20px 0;
+        }
+        /* Basic responsive design using media queries */
+
+/* For screens smaller than 768px (tablets and mobile devices) */
+@media screen and (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .profile-pic img {
+        width: 250px;
+        height: 250px;
+    }
+
+    .post h1 {
+        font-size: 1.8rem;
+    }
+
+    .menu a {
+        font-size: 1rem;
+    }
+
+    .skills-cards {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .skill-card {
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .button {
+        width: 100%;
+        padding: 12px;
+    }
+
+    .theme-toggle {
+        font-size: 1.5rem;
+    }
+}
+
+/* For screens smaller than 480px (mobile devices) */
+@media screen and (max-width: 480px) {
+    .container {
+        padding: 15px;
+    }
+
+    .profile-pic img {
+        width: 200px;
+        height: 200px;
+       
+    }
+
+    .post h1 {
+        font-size: 1.6rem;
+    }
+
+    .menu a {
+        font-size: 0.9rem;
+    }
+
+    .button {
+        padding: 10px 15px;
+    }
+
+    .skills-cards {
+        gap: 10px;
+    }
+
+    .skill-card {
+        width: 100%;
+    }
+}
+
+    </style>
+</head>
+
+<body>
+    <!-- Navbar Section -->
+    <header class="navbar">
+        <div class="name"><b class="bold">T</b>arun</div>
+        <nav class="menu">
+            <a href="#home">Home</a>
+            <a href="#about">My Projects</a>
+            <a href="#skills">Skills</a>
+            <button class="button" onclick="window.location.href='mailto:mhub3186@gmail.com'">Hire Me</button>
+            <button class="button" onclick="window.location.href='cv.pdf'">Download CV</button>
+            <button class="theme-toggle" onclick="toggleTheme()">☀️</button>
+        </nav>
+    </header>
+
+    <!-- Home Section -->
+    <div class="container" id="home">
+        <div class="post">
+            <h1>SOFTWARE Teacher</h1>
+            <p>Hi, I am Tarun from India. I teach with decication and provides a friendly envivornment.
+            </p>
+        </div>
+        <div class="profile-pic">
+            <img src="WhatsApp_Image_2024-11-29_at_12.06.43_PM-removebg-preview.png" alt="My Pic">
+        </div>
+    </div>
+
+    <!-- Counters Section -->
+    <div class="counters">
+        <div>
+            <div class="counter" data-target="114">0</div>
+            <div class="counter-label">Students I Have Taught</div>
+        </div> 
+        <div>
+            <div class="counter" data-target="50">0</div>
+            <div class="counter-label">Projects Completed</div>
+        </div>
+        <div>
+            <div class="counter" data-target="300">0</div>
+            <div class="counter-label">Coffees Taken</div>
+        </div>
+    </div>
+
+    <!-- Skills Section -->
+    <section class="skills" id="skills">
+        <h2 class="skills-header">What I Teach?</h2>
+        <div class="skills-cards">
+            <div class="skill-card">
+                <div class="skill-icon">🎨</div>
+                <div class="skill-title">Graphic Design</div>
+                <div class="skill-description">Expert in creating visually appealing designs using tools like Photoshop
+                    and Illustrator.</div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">💻</div>
+                <div class="skill-title">Web Design</div>
+                <div class="skill-description">Specialize in responsive and user-friendly website designs using HTML,
+                    CSS, and JavaScript.</div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🖌️</div>
+                <div class="skill-title">Illustration</div>
+                <div class="skill-description">Creating custom illustrations and vector art for diverse projects.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Qualifications Section -->
+    <section class="qualifications" id="qualifications">
+        <h2 class="qualifications-header">Qualifications</h2>
+        <ul class="qualification-list">
+            <li>Bachelor's Degree in BSC</li>
+            <li>Certification Computer Applications</li>
+            <li>2+ Years of Teaching Experience</li>
+        </ul>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 Tarun. All rights reserved.</p>
+        <div class="social-icons">
+            <a href="https://www.instagram.com/mr___tanwar?igsh=dXN2aXJ6bGt4ajB5" target="_blank" title="Instagram">
+                <img src="instagram.png" alt="Instagram Icon" style="width:24px; vertical-align:middle;">
+            </a>
+            <!-- LinkedIn -->
+            <a href="" target="_blank" title="LinkedIn">
+                <img src="social.png" alt="LinkedIn Icon" style="width:24px; vertical-align:middle;">
+            </a>
+            <a href="mailto:mhub3186@gmail.com.com" target="_blank" title="Mail">
+                <img src="mail.png" alt="LinkedIn Icon" style="width:24px; vertical-align:middle;">
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        // Animate Counters
+        const counters = document.querySelectorAll('.counter');
+        counters.forEach(counter => {
+            const updateCount = () => {
+                const target = +counter.getAttribute('data-target');
+                const current = +counter.innerText;
+                const increment = target / 200;
+
+                if (current < target) {
+                    counter.innerText = Math.ceil(current + increment);
+                    setTimeout(updateCount, 10);
+                } else {
+                    counter.innerText = target;
+                }
+            };
+            updateCount();
+        });
+
+        function toggleTheme() {
+            const root = document.documentElement;
+            if (root.style.getPropertyValue('--background-color') === '#fff') {
+                root.style.setProperty('--background-color', '#000');
+                root.style.setProperty('--text-color', '#fff');
+                root.style.setProperty('--primary-color', 'rgb(57, 255, 20)');
+                root.style.setProperty('--secondary-background', '#111');
+                root.style.setProperty('--card-background', '#222');
+                root.style.setProperty('--text-muted', '#aaa');
+                document.querySelector('.theme-toggle').innerText = '☀️';
+            } else {
+                root.style.setProperty('--background-color', '#fff');
+                root.style.setProperty('--text-color', '#000');
+                root.style.setProperty('--primary-color', '#007BFF');
+                root.style.setProperty('--secondary-background', '#f8f9fa');
+                root.style.setProperty('--card-background', '#e9ecef');
+                root.style.setProperty('--text-muted', '#6c757d');
+                document.querySelector('.theme-toggle').innerText = '🌙';
+            }
+        }
+    </script>
+
+</body>
+
+</html>
